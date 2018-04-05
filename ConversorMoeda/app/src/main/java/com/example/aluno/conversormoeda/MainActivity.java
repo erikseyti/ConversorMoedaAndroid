@@ -14,8 +14,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Double.parseDouble;
+
 public class MainActivity extends AppCompatActivity {
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
         String valorInic = spinnerIni.getSelectedItem().toString();
         String valorFin = spínnerFin.getSelectedItem().toString();
-        Double quantidade = Double.parseDouble(quant.getText().toString());
+        String quantidade = !quant.getText().toString().trim().isEmpty() ? quant.getText().toString() : "0.0";
+
+        //Double.parseDouble(quant.getText().toString());
 
         Log.i("MainActivity",quantidade.toString());
         Double valor1 = 0.0;
@@ -59,11 +63,6 @@ public class MainActivity extends AppCompatActivity {
             quant.requestFocus();
             return;
 
-        }
-        if (quantidade.toString().length()==0)
-        {
-            Toast.makeText(this,"Insira um valor para conversão",Toast.LENGTH_SHORT).show();
-            return;
         }
 
         else if(valorInic.equals(valorFin))
@@ -120,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         //Toast.makeText(this,valor1.toString(),Toast.LENGTH_SHORT).show();
         //Toast.makeText(this,valor2.toString(),Toast.LENGTH_SHORT).show();
 
-        resultado = (quantidade*valor1)*valor2;
+        resultado = (parseDouble(quantidade)*valor1)*valor2;
 
         Toast.makeText(this,resultado.toString(),Toast.LENGTH_SHORT).show();
 
